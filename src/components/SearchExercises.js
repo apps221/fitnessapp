@@ -4,12 +4,30 @@ import {Box, Button, Stack, TextField, Typography} from '@mui/material'
 import { exerciseOptions, fetchData } from '../utils/fetchData'
 const SearchExercises = () => {
     const [search, setSearch] = useState('');
+    const [exercises, setExercises] =useState([])
+    const [bodyParts, setBodyParts] = useState([])
+    useEffect(() => {
+        const fetchExercisesData = async () => {
+            const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions)
+            setBodyParts(['all', ...bodyPartsData]) //sets first element in array to all
+            console.log(bodyParts);
+        }
+        fetchExercisesData();
+    }, [])
     const handleSearch = async () => {
         if(search) {
             const exerciseData = await fetchData(
-                'https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions
+                'https://exercisedb.p.rapidapi.com/exercises?limit=1000&offset=0', exerciseOptions
             );
-            console.log(exerciseData);
+            const searchedExercises = exerciseData.filter(
+                (exercise) => exercise.name.toLowerCase().includes(search) ||
+                exercise.target.toLowerCase().includes(search) ||
+                exercise.equipment.toLowerCase().includes(search) ||
+                exercise.bodyPart.toLowerCase().includes(search)
+            )
+            setSearch('')
+            setExercises(searchedExercises)
+            console.log(exercises);
         }
     }
   return (
