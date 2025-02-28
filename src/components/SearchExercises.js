@@ -3,10 +3,23 @@ import { useEffect, useState} from 'react'
 import {Box, Button, Stack, TextField, Typography} from '@mui/material'
 import { exerciseOptions, fetchData } from '../utils/fetchData'
 import HorizontalScrollbar from './HorizontalScrollbar'
-const SearchExercises = () => {
+const SearchExercises = ({setExercises, setBodyPart, bodyPart}) => {
     const [search, setSearch] = useState('');
-    const [exercises, setExercises] =useState([])
+
     const [bodyParts, setBodyParts] = useState([])
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                handleSearch();
+            }
+        };
+        document.addEventListener("keydown", handleKeyDown)
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown)
+        }
+
+    }, [search]) //every time search value changes it reruns
     useEffect(() => {
         const fetchExercisesData = async () => {
             const bodyPartsData = await fetchData('https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions)
@@ -32,12 +45,6 @@ const SearchExercises = () => {
             console.log(searchedExercises);
         }
     }
-    const text= document.getElementById('textInput')
-    text.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-          handleSearch()
-        }
-      });
   return (
    <Stack alignItems="center" mt='37px' justifyContent='center' p='20px'>
     <Typography fontWeight={700} sx={{fontSize: {lg: '44px', xs: '30px'}}} mb="50px" textAlign='center'>
@@ -76,7 +83,8 @@ const SearchExercises = () => {
     </Box>
     <Box>
         <Box sx={{position: 'relative', width: '100%', p: '20px'}}>
-            <HorizontalScrollbar data = {bodyParts} />
+            <HorizontalScrollbar data = {bodyParts} bodyPart={bodyPart} setBodyPart={setBodyPart} />
+           
         </Box>
     </Box>
    </Stack>
