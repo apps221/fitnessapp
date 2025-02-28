@@ -32,9 +32,9 @@ const SearchExercises = () => {
             console.log(searchedExercises);
         }
     }
-    document.addEventListener('keydown', function(event) {
+    const text= document.getElementById('textInput')
+    text.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            event.preventDefault();
           handleSearch()
         }
       });
@@ -56,6 +56,7 @@ const SearchExercises = () => {
         onChange={(e) => setSearch(e.target.value.toLowerCase())}
         placeholder='Search Exercises'
         type='text'
+        id="textInput"
         />
         <Button className="search-btn"
         sx={{
