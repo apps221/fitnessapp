@@ -46,6 +46,8 @@ body {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    overflow-x: scroll;
+    max-width: 1000px;
   }
   
   .detail-image {
