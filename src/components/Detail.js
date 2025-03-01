@@ -18,7 +18,6 @@ const Detail = ({exerciseDetail}) => {
           of the best <br /> exercises to target your {target}. It will help you improve your{' '}
           <br /> mood and gain energy.
         </Typography>
-        
       </Stack>
     </Stack>
   )
