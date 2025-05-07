@@ -113,7 +113,15 @@ body {
     text-decoration: none;
   }
   
+  
   @media screen and (max-width:1200px) {
+    .MuiBox-root.css-1bfz5mc {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+   
     .detail-image {
       width: 300px;
       height: 300px;
@@ -122,11 +130,6 @@ body {
   
     .react-horizontal-scrolling-menu--scroll-container {
       width: 500px;
-    }
-  
-    .left-arrow,
-    .right-arrow {
-      position: static !important;
     }
   
     .hero-banner-img {
@@ -141,6 +144,18 @@ body {
       width: 320px;
       height: 300px;
     }
+    .MuiBox-root.css-1p959bk {
+      width: 100%;
+      padding: 0px;
+    }
+    
+    .MuiBox-root.css-0{
+      width: 100vw;
+    }
+    
+    .react-horizontal-scrolling-menu--wrapper {
+      flex-basis: 100%;
+    }
   
   }
   
@@ -152,13 +167,6 @@ body {
       display: none;
     }
    
-    .react-horizontal-scrolling-menu--wrapper {
-      width: 100%;
-      display: flex;
-      flex-wrap: wrap;
-      overflow-x: scroll;
-      max-width: 800px;
-      
-    }
+   
 
   }
