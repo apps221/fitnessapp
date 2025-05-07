@@ -112,6 +112,9 @@ body {
     height: 381px;
     text-decoration: none;
   }
+  .css-uvblw2-MuiButtonBase-root-MuiButton-root {
+    z-index: 2;
+  }
   
   
   @media screen and (max-width:1200px) {
@@ -133,7 +136,11 @@ body {
     }
   
     .hero-banner-img {
-      display: none;
+      opacity: 0.2;
+      height: 800px;
+      position: static;
+      pointer-events: none;
+   
     }
   
     .exercise-card {
